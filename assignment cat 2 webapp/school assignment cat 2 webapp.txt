@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login | Sign up | User profile</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+	<!-- Login page -->
+	<div id="login-page">
+		<h2>Login</h2>
+		<form action="login.php" method="post">
+			<label>Email:</label>
+			<input type="email" name="email" required><br><br>
+			<label>Password:</label>
+			<input type="password" name="password" required><br><br>
+			<input type="submit" name="submit" value="Login">
+		</form>
+		<p>Don't have an account? <a href="#signup-page">Sign up</a></p>
+	</div>
+
+	<!-- Sign up page -->
+	<div id="signup-page">
+		<h2>Sign up</h2>
+		<form action="signup.php" method="post">
+			<label>Username:</label>
+			<input type="text" name="username" required><br><br>
+			<label>Email:</label>
+			<input type="email" name="email" required><br><br>
+			<label>Password:</label>
+			<input type="password" name="password" required><br><br>
+			<label>Confirm Password:</label>
+			<input type="password" name="confirm_password" required><br><br>
+			<input type="submit" name="submit" value="Sign up">
+		</form>
+		<p>Already have an account? <a href="#login-page">Login</a></p>
+	</div>
+
+	<!-- User profile page -->
+	<div id="user-profile-page">
+		<h2>User Profile</h2>
+		<form action="update-profile.php" method="post">
+			<label>Username:</label>
+			<input type="text" name="username" required value="<?php echo $username; ?>"><br><br>
+			<label>Email:</label>
+			<input type="email" name="email" required value="<?php echo $email; ?>"><br><br>
+			<label>New Password:</label>
+			<input type="password" name="new_password"><br><br>
+			<label>Confirm New Password:</label>
+			<input type="password" name="confirm_new_password"><br><br>
+			<input type="submit" name="submit" value="Update Profile">
+		</form>
+		<a href="logout.php">Logout</a>
+	</div>
+
+	<script src="script.js"></script>
+
+</body>
+</html>
+#login-page,
+#signup-page,
+#user-profile-page {
+	display: none;
+}
+
+.active {
+	display: block;
+}
+
+javascript
+const loginButton = document.querySelector('#login-button');
+const signupButton = document.querySelector('#signup-button');
+const loginPage = document.querySelector('#login-page');
+const signupPage = document.querySelector('#signup-page');
+
+loginButton.addEventListener('click', () => {
+	loginPage.classList.add('active');
+	signupPage.classList.remove('active');
+});
+
+signupButton.addEventListener('click', () => {
+	signupPage.classList.add('active');
+	loginPage.classList.remove('active')
+});
+
+php
+<?php
+session_start();
+require_once('db.php
